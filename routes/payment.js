@@ -18,8 +18,8 @@ router.post("/create-connect-account",async(req,res)=>{
 
     const accountLink = await strip.accountLinks.create({
       account: account.id,
-      refresh_url: 'http://localhost:8080/sellerprofile',
-      return_url: 'http://localhost:8080/success',
+      refresh_url: 'https://smart-cart-two-beta.vercel.app/sellerprofile',
+      return_url: 'https://smart-cart-two-beta.vercel.app/success',
       type: 'account_onboarding',
     });
 
