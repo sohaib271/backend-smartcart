@@ -9,8 +9,12 @@ const restrictToUserOnly=require("../middlewares/user")
 
   router.post("/signup", upload.single("storeLogo"), async (req, res) => {
       const { name, email, password, role, storeName, address, payment } = req.body;
-    
-      const storeLogoUrl = req.file ? req.file.path : undefined;
+      const emal= await User.findOne({email:email});
+
+      if(emal){
+        return res.json({err:"Email already exist"})
+      }else{
+         const storeLogoUrl = req.file ? req.file.path : undefined;
       const newUser = new User({
         name,
         email,
@@ -24,6 +28,7 @@ const restrictToUserOnly=require("../middlewares/user")
       const token=setUser(newUser._doc)
       await newUser.save();
       res.status(201).json({token:token, message: "Signup successful!"});
+      }
   });
 
   router.post("/login",async(req,res)=>{
