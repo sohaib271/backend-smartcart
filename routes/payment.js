@@ -72,7 +72,7 @@ router.post("/payment/1",async (req,res)=>{
       payment_method_types: ['card'],
       line_items: [line_items], 
       mode: 'payment',
-      success_url: 'http://localhost:8080/success',
+      success_url: 'https://smart-cart-two-beta.vercel.app/success',
       cancel_url: 'http://localhost:8080/cancel',
     });
 
